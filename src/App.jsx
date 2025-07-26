@@ -48,11 +48,11 @@ const productData = [
 
 export default function App() {
   return (
-    <div>
+    <>
       <Header />
       <Catalog />
       <Footer />
-    </div>
+    </>
   );
 }
 
@@ -101,22 +101,28 @@ function Catalog() {
   return (
     <main className="catalog">
       <ul className="products">
-        <Product />
+
+      {productData.map(item => <Product productObj={item}/>)}
+        
       </ul>
     </main>
   );
 }
 
-function Product() {
-  const products = [...productData];
+function Product({productObj}) {
+  
+  // const {productObj} = props;
+  
+  if(productObj.soldOut) return null;
 
   return (
+    //!productObj.soldOut &&
     <li className="product">
-      <img src={products[1].photoName} alt={products[1].name} />
+      <img src={productObj.photoName} alt={productObj.name} />
       <div>
-        <h3>{products[1].name}</h3>
-        <p>{products[1].description}</p>
-        <span>{products[1].price}</span>
+        <h3>{productObj.name}</h3>
+        <p>{productObj.description}</p>
+        <span>{productObj.price}</span>
       </div>
     </li>
   );
