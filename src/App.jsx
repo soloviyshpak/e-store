@@ -110,19 +110,13 @@ function Catalog() {
 }
 
 function Product({productObj}) {
-  
-  // const {productObj} = props;
-  
-  if(productObj.soldOut) return null;
-
-  return (
-    //!productObj.soldOut &&
-    <li className="product">
+   return (
+    <li className={`product ${productObj.soldOut ? "sold-out" : ""}`}>
       <img src={productObj.photoName} alt={productObj.name} />
       <div>
         <h3>{productObj.name}</h3>
         <p>{productObj.description}</p>
-        <span>{productObj.price}</span>
+        <span>{!productObj.soldOut ? productObj.price : "SOLD-OUT!"}</span>
       </div>
     </li>
   );
